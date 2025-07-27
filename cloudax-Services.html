@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services IT Freelance - Expert en Solutions Technologiques</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 100px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ffa726);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Services Section */
+        .services {
+            background: white;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+            z-index: 2;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            transition: left 0.5s ease;
+        }
+
+        .service-card:hover::before {
+            left: 0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-category {
+            display: inline-block;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .service-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff6b6b;
+            text-align: right;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: #ffa726;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Floating elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">IT Services Pro</div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="accueil" class="hero">
+        <div class="container">
+            <h1>Expert en Solutions IT</h1>
+            <p>Services professionnels de migration, configuration et maintenance informatique</p>
+            <a href="#services" class="cta-button">Découvrir nos services</a>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title fade-in">Nos Services Spécialisés</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-category">IT</div>
+                    <div class="service-description">
+                        <strong>Migration Email & Microsoft 365</strong><br>
+                        • Migration du nom de domaine de OVH vers Microsoft<br>
+                        • Création des adresses emails<br>
+                        • Migration avec redirection Onmicrosoft<br>
+                        • Configuration sur PC et téléphone<br>
+                        • Test & Validation complète
+                    </div>
+                    <div class="service-price">800 TND</div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-category">IT</div>
+                    <div class="service-description">
+                        <strong>Configuration Microsoft 365 Complète</strong><br>
+                        Installation & configuration des comptes Microsoft 365 (licence standard & basics) avec configuration de SharePoint & Teams, plus formation sur l'utilisation du produit.
+                    </div>
+                    <div class="service-price">1800 TND</div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-category">IT</div>
+                    <div class="service-description">
+                        <strong>Installation Serveur & VPN</strong><br>
+                        Installation du serveur et préparation de l'environnement pour la connexion à distance VPN avec tests complets.
+                    </div>
+                    <div class="service-price">500 TND</div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-category">IT</div>
+                    <div class="service-description">
+                        <strong>Solution de Stockage Sécurisée</strong><br>
+                        Installation d'un outil de stockage avec authentification Dashboard. Gérez le contenu & l'archive de vos données avec une solution fiable et évolutive.
+                    </div>
+                    <div class="service-price">700 TND</div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-category">IT</div>
+                    <div class="service-description">
+                        <strong>Maintenance & Support</strong><br>
+                        Maintenance software pour tous les problèmes des PC portables & bureautiques + formatage + installation Office 365 & autres logiciels.
+                    </div>
+                    <div class="service-price">200 TND</div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-category">IT</div>
+                    <div class="service-description">
+                        <strong>Configuration Serveurs Avancée</strong><br>
+                        Configuration des serveurs (VPS), VMs (VMware vSphere), panneau de contrôle Plesk, nom de domaines & SSL, base de données managées.
+                    </div>
+                    <div class="service-price">2000 TND</div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-category">Dev</div>
+                    <div class="service-description">
+                        <strong>Développement Web</strong><br>
+                        Création de landing pages (HTML + CSS) ou WordPress. Sites vitrines professionnels et modernes.
+                    </div>
+                    <div class="service-price">650 TND</div>
+                </div>
+
+                <div class="service-card fade-in">
+                    <div class="service-category">AV</div>
+                    <div class="service-description">
+                        <strong>Solutions Audiovisuelles</strong><br>
+                        Installation d'une régie de streaming (OBS ou vMix), installation & configuration d'une régie vidéo avec Resolume Arena.
+                    </div>
+                    <div class="service-price">2000 TND</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contactez-nous</h2>
+            <p>Prêt à transformer votre infrastructure IT ? Parlons de votre projet !</p>
+            <div class="contact-info">
+                <div class="contact-item floating">
+                    <h3>📧 Email</h3>
+                    <p>contact@itservices.tn</p>
+                </div>
+                <div class="contact-item floating">
+                    <h3>📱 Téléphone</h3>
+                    <p>+216 XX XXX XXX</p>
+                </div>
+                <div class="contact-item floating">
+                    <h3>🏢 Consultation</h3>
+                    <p>Devis gratuit sous 24h</p>
+                </div>
+                <div class="contact-item floating">
+                    <h3>⚡ Support</h3>
+                    <p>Support technique 7j/7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 IT Services Pro. Tous droits réservés. Freelance spécialisé en solutions informatiques.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+        });
+
+        // Service cards hover effect with mouse tracking
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+            });
+        });
+
+        // Add floating animation delay to contact items
+        document.querySelectorAll('.floating').forEach((item, index) => {
+            item.style.animationDelay = `${index * 0.2}s`;
+        });
+    </script>
+</body>
+</html>
